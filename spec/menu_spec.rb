@@ -15,7 +15,16 @@ describe Menu do
   end
 
   it 'prints a list of dishes with prices' do
-    printed_menu = 'Chicken £4.50, Soup £5.00, Rolls £3.50'
+    printed_menu = "Chicken £4.50, Soup £5.00, Rolls £3.50"
     expect(menu.print).to eq(printed_menu)
   end
+
+  it 'answers true if a dish is included on it' do
+    expect(menu.has_dish?(:chicken)).to eq(true)
+  end
+
+  it 'answers false if a dish is not included on it' do
+    expect(menu.has_dish?(:seafood)).to eq(false)
+  end
+
 end
