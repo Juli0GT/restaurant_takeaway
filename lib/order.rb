@@ -16,6 +16,4 @@ class Order
 
   attr_reader :menu
 
-  class NoItemError < StandardError; end
-
 end
