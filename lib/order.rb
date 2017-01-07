@@ -12,8 +12,17 @@ class Order
     dishes[dish] = quant
   end
 
+  def total_price
+    item_prices.inject(:+)
+  end
+
   private
 
   attr_reader :menu
 
-end
+  def item_prices
+     dishes.map do |dish, quant|
+       menu.dish_price(dish) * quant
+     end
+   end
+ end

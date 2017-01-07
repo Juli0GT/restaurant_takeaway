@@ -13,8 +13,10 @@ class Menu
   end
 
   def has_dish?(dish)
-    @dishes.include?(dish)
+    dishes.include?(dish)
   end
 
-
+  def dish_price(dish)
+    dishes[dish]
+  end
 end

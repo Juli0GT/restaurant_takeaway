@@ -20,11 +20,15 @@ describe Menu do
   end
 
   it 'answers true if a dish is included on it' do
-    expect(menu.has_dish?(:chicken)).to eq(true)
+    expect(menu.has_dish?(:soup)).to eq(true)
   end
 
   it 'answers false if a dish is not included on it' do
     expect(menu.has_dish?(:seafood)).to eq(false)
+  end
+
+  it 'calculates the price of a dish' do
+    expect(menu.dish_price(:soup)).to eq(dishes[:soup])
   end
 
 end
