@@ -1,8 +1,12 @@
+require './lib/order'
+require './lib/sms'
+
 class Takeaway
 
-  def initialize(menu:, order:)
+  def initialize(menu:, config:, order:nil, sms: nil)
     @menu = menu
-    @order = order || Order.new
+    @order = order || Order.new(menu)
+    @sms = sms || SMS.new(config)
   end
 
   def print_menu
@@ -10,13 +14,18 @@ class Takeaway
   end
 
   def make_order(dishes)
-    dishes.each do |dish, quant|
-      order.add(dish, quant)
-    end
+    order_dishes(dishes)
+    sms.send
+    order.total_price
   end
 
   private
 
-  attr_reader :menu, :order
+  attr_reader :menu, :order, :sms
 
+  def order_dishes(dishes)
+    dishes.each do |dish, quant|
+      order.add(dish, quant)
+    end
+  end
 end
